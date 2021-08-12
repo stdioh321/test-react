@@ -1,0 +1,28 @@
+.add-task-container {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.add-task-container .add-task-input {
+  flex: 2;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: none;
+  background-color: #444;
+  color: #eee;
+  font-size: 16px;
+}
+.add-task-container .add-task-input + * {
+  transition: all var(--an-speed);
+  max-width: 100%;
+  opacity: 1;
+  overflow: hidden;
+  position: relative;
+}
+.add-task-container .add-task-input:placeholder-shown + div {
+  max-width: 0px !important;
+  opacity: 0;
+}
