@@ -1,0 +1,83 @@
+.task-container {
+    position: relative;
+    background-color: #444;
+    margin: 8px 0;
+    padding: 15px 20px;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    // flex-direction: column;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: #eee;
+    cursor: pointer;
+    transition: background-color var(--an-speed), box-shadow var(--an-speed);
+    &>.title {
+        flex: 1;
+    }
+    &:hover {
+        background-color: #111;
+        &>.task-container-id {
+            right: -5px;
+            top: -5px;
+        }
+        &::before {
+            // transition: all var(--an-speed);
+            // transform: scale(1.5);
+        }
+    }
+    &::before {
+        content: "👎";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 2px;
+    }
+    &.completed {
+        --pull: 12px;
+        box-shadow: inset var(--pull) 0px 0px 0px var(--color1);
+        &:hover {
+            box-shadow: inset calc(var(--pull) + 2px) 0px 0px 0px var(--color1) !important;
+        }
+        &::before {
+            content: "👍" !important;
+            // animation: opacity var(--an-speed) 1 !important;
+        }
+    }
+    &>.task-container-id {
+        transition: right var(--an-speed), top var(--an-speed);
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border-radius: 5px;
+        background-color: var(--color1);
+        color: var(--bg2);
+        padding: 5px;
+        min-width: 15px;
+        font-weight: 900;
+        height: 15px;
+        max-width: 150px;
+        white-space: pre;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // line-height: 100px;
+    }
+    &>.task-options {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        &>* {
+            font-size: 26px;
+            color: var(--color1);
+        }
+        &>.task-delete {
+            color: rgb(218, 96, 96);
+            margin-left: 10px;
+        }
+    }
+}

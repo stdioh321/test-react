@@ -1,0 +1,17 @@
+.back-button-container {
+    display: flex;
+    justify-content: flex-start;
+    // align-items: flex-end;
+    &>* {
+        min-width: 100px;
+    }
+}
+
+.task-details-container {
+    background-color: var(--bg2);
+    padding: 5px;
+    margin-top: 5px;
+    &>* {
+        color: var(--text-color1);
+    }
+}
