@@ -18,6 +18,12 @@ npm run start
 ```
 ![terminal](./docs/screenshot_01.png)
 
+Open your browser at:
+
+**http://localhost:3000**
+
+
+
 |Index|Details|
 :---:|:-----:
 ![index](./docs/screenshot_02.png)|![details](./docs/screenshot_03.png)
