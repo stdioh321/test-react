@@ -11,17 +11,7 @@ const TaskDetails = () => {
     const history = useHistory();
     return (
         <>
-        <div className="back-button-container">
-            <Button onPressed={()=>{
-                history.goBack();
-            }}>Voltar</Button>
-        </div>
-        <div className="task-details-container">
-            <h2>{params?.taskTitle}</h2>   
-            <p>
-            asdasd
-            </p>
-        </div>
+        
         </>
     );
 }

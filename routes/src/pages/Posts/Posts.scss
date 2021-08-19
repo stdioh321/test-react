@@ -1,0 +1,55 @@
+.Posts {
+    padding: 10px 40px;
+    .Posts-item {
+        box-shadow: 0px 0px 0px 1px black;
+        border-radius: 5px;
+        padding: 5px;
+        position: relative;
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+        &>.id {
+            font-weight: 900;
+            font-size: 1.2;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            // z-index: 2;
+            &::before {
+                content: "";
+                z-index: -1;
+                background-color: rgba(40, 100, 255, 1);
+                min-width: 20px;
+                height: 25px;
+                position: absolute;
+                border-radius: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+        &>.title {
+            font-size: 1.2em;
+            font-weight: 900;
+            &>a,
+            &>a:hover,
+            &>a:focus,
+            &>a:active {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+        &>.body {
+            // font-size: 0.8em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+    }
+}
