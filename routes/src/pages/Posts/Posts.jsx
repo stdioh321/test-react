@@ -9,6 +9,7 @@ import {
   useRouteMatch,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 const Posts = () => {
   const { url, path } = useRouteMatch();
@@ -45,7 +46,9 @@ const Posts = () => {
           </div>
         </Route>
         <Route path={`${path}/:id`}>
-          <Post></Post>
+          <QueryClientProvider client={new QueryClient()}>
+            <Post />
+          </QueryClientProvider>
         </Route>
       </Switch>
     </Router>
@@ -57,9 +60,36 @@ export default Posts;
 function Post() {
   const { id = null } = useParams();
   const history = useHistory();
+  const [post, setPost] = useState(null);
+  let myKey = ["myKey", 5];
+
+  const { isLoading, error, data, isFetching } = useQuery(myKey, () => {
+    return get(`/posts/${id}`);
+  });
+
+  if (error)
+    return (
+      <div>
+        <div>Oops! Some error.</div>
+        <div>{error?.message}</div>
+      </div>
+    );
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <div>
       <div>ID: {id}</div>
+      <div>
+        {/* <pre>{JSON.stringify(data)}</pre> */}
+        {Object.keys(data).map((it1, idx1) => {
+          return (
+            <div>
+              <span style={{ fontSize: "2em", fontWeight: "900" }}>{it1}:</span>{" "}
+              {data[it1]}
+            </div>
+          );
+        })}
+      </div>
       <div>
         <button
           onClick={(ev) => {

@@ -11,4 +11,5 @@ export const get = async (
 ) => {
   const resp = await api.get(url, options);
   doSomethingWithData(resp?.data);
+  return resp?.data;
 };
