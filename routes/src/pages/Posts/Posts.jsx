@@ -32,7 +32,7 @@ const Posts = () => {
       <Switch>
         <Route exact path={`${path}`}>
           <div className="Posts">
-            {posts.map((it1, idx1) => {
+            {posts.map((it1, x1) => {
               return (
                 <div className="Posts-item">
                   <div className="id">{it1?.id}</div>

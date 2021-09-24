@@ -1,0 +1,38 @@
+@import-normalize;
+.pointer {
+    cursor: pointer;
+}
+
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: #000000e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    width: clamp(50%, 700px, 90vw);
+    height: min(50%, 300px);
+    margin: auto;
+    padding: 5px 2rem;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    &>*:not(:last-child) {
+        flex: 1;
+    }
+    &>.close-button-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}
