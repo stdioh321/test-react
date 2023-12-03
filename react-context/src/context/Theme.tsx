@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 export enum ThemeTypes {
   DARK = 'dark',
@@ -14,14 +14,10 @@ export const ThemeContext = createContext<Props | undefined>()
 export const getContext = (): Props => useContext(ThemeContext)
 export const ThemeProvider = ({ children }) => {
   const lStorageThemeType: ThemeTypes = (localStorage.getItem('theme') || ThemeTypes.LIGTH) as ThemeTypes
-  if (lStorageThemeType === ThemeTypes.DARK) document.querySelector('body')?.classList.add('dark-theme')
   const [theme, setTheme] = useState<ThemeTypes>(lStorageThemeType)
 
   function toggleTheme() {
     const newTheme = theme === ThemeTypes.LIGTH ? ThemeTypes.DARK : ThemeTypes.LIGTH
-    localStorage.setItem('theme', newTheme.toString())
-    if (newTheme === ThemeTypes.DARK) document.querySelector('body')?.classList.add('dark-theme')
-    else document.querySelector('body')?.classList.remove('dark-theme')
     setTheme(newTheme)
   }
 
@@ -31,5 +27,12 @@ export const ThemeProvider = ({ children }) => {
 
   const value: Props = { theme, toggleTheme, isDark }
 
+  useEffect(() => {
+    localStorage.setItem('theme', theme.toString())
+
+    const elBody = document.querySelector('body')
+    if (theme === ThemeTypes.DARK) elBody?.classList.add('dark-theme')
+    else elBody?.classList.remove('dark-theme')
+  }, [theme])
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider >
 }
