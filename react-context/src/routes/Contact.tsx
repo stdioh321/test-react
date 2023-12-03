@@ -5,8 +5,10 @@ export default function Contact() {
   const { theme, toggleTheme } = getContext()
 
   return (
-    <h1>
-      Contact: {theme}
-    </h1>
+    <div className="container">
+      <h1>
+        Contact: {theme}
+      </h1>
+    </div>
   )
 }

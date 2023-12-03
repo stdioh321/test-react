@@ -7,20 +7,29 @@ export enum ThemeTypes {
 
 export type Props = {
   theme: string,
-  toggleTheme: () => void
+  toggleTheme: () => void,
+  isDark: () => boolean
 }
 export const ThemeContext = createContext<Props | undefined>()
 export const getContext = (): Props => useContext(ThemeContext)
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeTypes>(ThemeTypes.LIGTH)
+  const lStorageThemeType: ThemeTypes = (localStorage.getItem('theme') || ThemeTypes.LIGTH) as ThemeTypes
+  if (lStorageThemeType === ThemeTypes.DARK) document.querySelector('body')?.classList.add('dark-theme')
+  const [theme, setTheme] = useState<ThemeTypes>(lStorageThemeType)
 
   function toggleTheme() {
-    console.log(`Theme ${theme} selected`);
-
-    setTheme(theme === ThemeTypes.LIGTH ? ThemeTypes.DARK : ThemeTypes.LIGTH)
+    const newTheme = theme === ThemeTypes.LIGTH ? ThemeTypes.DARK : ThemeTypes.LIGTH
+    localStorage.setItem('theme', newTheme.toString())
+    if (newTheme === ThemeTypes.DARK) document.querySelector('body')?.classList.add('dark-theme')
+    else document.querySelector('body')?.classList.remove('dark-theme')
+    setTheme(newTheme)
   }
 
-  const value: Props = { theme, toggleTheme }
+  function isDark() {
+    return theme === ThemeTypes.DARK;
+  }
+
+  const value: Props = { theme, toggleTheme, isDark }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider >
 }

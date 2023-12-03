@@ -1,15 +1,15 @@
 import { getContext, ThemeTypes } from '../context/Theme'
 
 export default function Home() {
-  const { theme, toggleTheme } = getContext()
+  const { theme, toggleTheme, isDark } = getContext()
 
   return (
-    <div>
+    <div className='container'>
       <h1>
-        Homeeee: {theme}
+        Current theme: {theme}
       </h1>
       <div>
-        <button onClick={() => { toggleTheme() }}>Toogle</button>
+        <button className={`btn ${isDark() ? 'btn-light': 'btn-dark'}`} onClick={() => { toggleTheme() }}>Toogle Theme</button>
       </div>
     </div>
   )
